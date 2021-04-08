@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  </head>
+  <body>
+    <div class="container">
+    <div class="container">
+      <br>
+      <!--ФОРМА ОБРАТНОЙ СВЯЗИ-->
+      <center>
+        <h1>Форма обратной связи</h1>
+      </center>
+      <br>
+      <div id="form">
+        <form>
+          <div class="form-group">
+            <label for="mane">Ваше имя</label>
+            <input type="text" class="form-control form-data" id="mane">
+          </div>
+          <div class="form-group">
+            <label for="mane">Ваше телефон</label>
+            <input type="text" class="form-control form-data" id="phone">
+          </div>
+          <div class="form-group">
+            <label for="email"> Ваш Email </label>
+            <input type="email" class="form-control" id="email" placeholder="name@example.com">
+          </div>
+          <div class="form-group">
+          <label for="exampleFormControlSelect1">Выберите формат</label>
+          <select class="form-control" id="exampleFormControlSelect1">
+            <option>Индивидуальный тур</option>
+            <option>Хочу присоединиться к группе</option>
+          </select>
+          </div>
+            <div class="form-group">
+            <label for="exampleFormControlTextarea1">Комментарий</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            </div>
+            <div class="form-group form-check">
+    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+    <label class="form-check-label" for="exampleCheck1">Подписаться на новости</label>
+  </div>
+
+
+<!--ФОРМА ОПРОСА-->
+
+<H1>Опрос:</H1>
+<p>Оптимальная длительность тура</p>
+<div class="form-check">
+  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+  <label class="form-check-label" for="exampleRadios1">
+    5 дней
+  </label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+  <label class="form-check-label" for="exampleRadios1">
+    7 дней
+  </label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+  <label class="form-check-label" for="exampleRadios1">
+    10 дней
+  </label>
+</div>
+<div class="form-group">
+<label for="exampleFormControlTextarea1">Свой вариант:</label><br>
+<textarea class="form-control-sm" id="exampleFormControlTextarea1" rows="3"></textarea>
+</div>
+
+          <button type="button" class="btn btn-primary" onclick="send_data()">Принять</button>
+        </form>
+      </div>
+
+
+      <script>
+        function send_data(){
+          var form_data = document.getElementsByClassName("form-data"); //retrieve filled form data
+          var i;
+          var data = [];
+          for(i=0; i<form_data.length; i++){
+            data.push(form_data[i].value);
+          }
+          google.script.run.saveData(data); // send to google app script
+          document.getElementById("form").style.display = "none"; // make form invisible
+          document.getElementById("completion-msg").style.display = "block"; // Optional if you want to give a completion feedback!
+        }
+      </script>
+
+    </body>
+  </html>
